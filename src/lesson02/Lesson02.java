@@ -94,8 +94,16 @@ public class Lesson02 {
         // System.out.println(bigNum);
 
 
+        int side01 = 5;
+        System.out.println(side01 * side01 * side01);
+
+        int side02 = 5;
+        int sideRes = side02 * side02 * side02;
+        System.out.println(sideRes);
+
+
         // switch
-        byte catWeight = 5;
+        byte catWeight = 10;
         switch (catWeight) { // byte / Byte, short / Short, int / Integer, char / Character, enum, String
             case 0:
             case 1:
@@ -111,18 +119,20 @@ public class Lesson02 {
             case 7:
                 System.out.println("200 грамм корма");
                 break;
-            default:
+            default: // необязательный блок
                 System.out.println("неверный ввод");
         }
 
+        catWeight = 3;
         // синтаксис switch в стиле лямбда выражений (java 14)
         switch (catWeight){
             case 0, 1 -> System.out.println("100 грамм корма");
             case 2, 3 -> System.out.println("150 грамм корма");
             case 4, 5, 6, 7 -> System.out.println("200 грамм корма");
-            default -> System.out.println("неверный ввод");
+            // default -> System.out.println("неверный ввод"); - необязательный блок
         }
 
+        // если результат работы switch сохраняется в переменную, то блок default становится обязательным
         int count = switch (catWeight){
             case 0, 1 -> 100;
             case 2, 3 -> 150; /* но не System.out.println(150) */
@@ -131,10 +141,11 @@ public class Lesson02 {
         };
         System.out.println(count);
 
+        catWeight = 5;
         count =  switch (catWeight){
             case 0, 1 -> {
                 System.out.println("Результат на 0 - 1 кг: " + 100);
-                yield 100;
+                yield 100; /* вернуть результат работы switch */
             }
             case 2, 3 -> {
                 System.out.println("Результат на 2 - 3 кг: " + 150);
