@@ -92,5 +92,64 @@ public class Lesson02 {
 
         System.out.println(smallNum);
         // System.out.println(bigNum);
+
+
+        // switch
+        byte catWeight = 5;
+        switch (catWeight) { // byte / Byte, short / Short, int / Integer, char / Character, enum, String
+            case 0:
+            case 1:
+                System.out.println("100 грамм корма");
+                break;
+            case 2:
+            case 3:
+                System.out.println("150 грамм корма");
+                break;
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                System.out.println("200 грамм корма");
+                break;
+            default:
+                System.out.println("неверный ввод");
+        }
+
+        // синтаксис switch в стиле лямбда выражений (java 14)
+        switch (catWeight){
+            case 0, 1 -> System.out.println("100 грамм корма");
+            case 2, 3 -> System.out.println("150 грамм корма");
+            case 4, 5, 6, 7 -> System.out.println("200 грамм корма");
+            default -> System.out.println("неверный ввод");
+        }
+
+        int count = switch (catWeight){
+            case 0, 1 -> 100;
+            case 2, 3 -> 150; /* но не System.out.println(150) */
+            case 4, 5, 6, 7 -> 200;
+            default -> 0;
+        };
+        System.out.println(count);
+
+        count =  switch (catWeight){
+            case 0, 1 -> {
+                System.out.println("Результат на 0 - 1 кг: " + 100);
+                yield 100;
+            }
+            case 2, 3 -> {
+                System.out.println("Результат на 2 - 3 кг: " + 150);
+                yield 150;
+            }
+            case 4, 5 -> {
+                System.out.println("Результат на 4 - 7 кг: " + 200);
+                yield 200;
+            }
+            default -> {
+                // обработка ошибки ввода
+                yield 0;
+            }
+        };
+        System.out.println(count);
+
     }
 }
