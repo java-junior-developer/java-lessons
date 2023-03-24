@@ -81,13 +81,5 @@ public class Lesson01 {
 
         // сложение byte или short дает int
 
-
-
-
-
-
-
-
-
     }
 }
