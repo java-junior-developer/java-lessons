@@ -90,30 +90,15 @@ public class Lesson04 {
         // которые приводят к созданию новых объектов
 
         // Для создания длинных строк принято использовать
-        // StringBuilder - один поток
-        // или
-        // StringBuffer - несколько потоков
+        // StringBuilder (один поток) или StringBuffer (несколько потоков)
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 10; i++) {
             sb.append(i).append(" "); // CharSequence
         }
         concatString = sb.toString();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println(concatString);
 
     }
 }
