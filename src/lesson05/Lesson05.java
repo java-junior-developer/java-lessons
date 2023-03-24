@@ -98,7 +98,7 @@ public class Lesson05 {
 
         System.out.println(colors);
 
-        // Arrays содержит методы для работы с массивами
+        // Класс Arrays содержит методы для работы с массивами
         System.out.println(Arrays.toString(colors));
 
         // методы для работы с массивами
