@@ -104,7 +104,8 @@ public class Lesson03 {
         System.out.println(plates);
         System.out.println(fairy);
 
-        // for (;;) {}
+        // for (;;) {} - бесконечный цикл
+
         /*int printsCount = 5;
 
         while (printsCount > 0) *//* булевое выражение / условие *//* { // тело цикла
