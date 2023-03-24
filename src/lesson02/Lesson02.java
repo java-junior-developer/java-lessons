@@ -2,6 +2,7 @@ package lesson02;
 
 public class Lesson02 {
     public static void main(String[] args) {
+
         // использование var возможно начиная с java 10
         var version = 10; // int
         var bigNumber = 10L; // long
