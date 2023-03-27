@@ -44,7 +44,6 @@ public class Application {
 
         Book book02 = new Book("Java 13", author02);
         System.out.println(book02.getTitle());
-
     }
 }
 
