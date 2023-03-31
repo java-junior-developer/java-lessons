@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson07.school;
+package ru.itmo.lessons.lesson0708.school;
 
 // Student наследуется от класса Person
 // Student - дочерний класс
@@ -35,6 +35,22 @@ public final class Student extends Person {
     }
     public int getLevel() {
         return level;
+    }
+
+    // переопределение метода (родителя, класса Person)
+    @Override // аннотация @Override времени компиляции
+    public void setAge(int studentAge) {
+        // при необходимости можно вызвать метод родителя
+        // super.setAge(studentAge);
+        if (studentAge < 7) {
+            throw new IllegalArgumentException("Exception: age < 7");
+        }
+        this.age = studentAge;
+    }
+
+    @Override
+    public void rest() {
+        System.out.println("реализация метода rest класса Student");
     }
 
 }
