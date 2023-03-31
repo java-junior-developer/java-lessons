@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson07.animals;
+package ru.itmo.lessons.lesson0708.animals;
 
 public class Cat {
     private String name = "безымянный";

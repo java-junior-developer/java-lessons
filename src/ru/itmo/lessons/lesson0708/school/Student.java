@@ -15,7 +15,12 @@ package ru.itmo.lessons.lesson0708.school;
 // protected - доступ из текущего и дочернего класса
 // отсутствие модификатора (package-private) - доступ из текущего,
 // дочернего класса и внутри текущего пакета
-public final class Student extends Person {
+
+// класс Student имплементирует интерфейс ILearn
+// разрешена имплементация нескольких интерфейсов через запятую
+// все абстрактные методы должны быть реализованы
+// default методы можно переопределить
+public final class Student extends Person implements ILearn{
     private String subject; // изучаемый предмет
     private int level; // уровень знаний
 
@@ -51,6 +56,14 @@ public final class Student extends Person {
     @Override
     public void rest() {
         System.out.println("реализация метода rest класса Student");
+    }
+
+    // реализация абстрактного метода интерфейса ILearn
+    @Override
+    public void learn(int level){
+        System.out.println("Студент " + name +
+                " проходит обучение." + " Предмет " + subject);
+        this.level = (int) (Math.random() * level);
     }
 
 }

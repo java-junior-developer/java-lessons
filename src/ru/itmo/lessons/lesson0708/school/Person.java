@@ -15,7 +15,11 @@ abstract public class Person {
         setName(name);
     }
 
-    public void setName(String name){
+    // final c аргументами (локальными переменными) означают,
+    // что данные можно использовать только для чтения
+    // (нельзя изменить значение примитива и ссылку для объекта)
+    // final метод нельзя переопределить в дочернем классе
+    public final void setName(String name){
         if (name == null || name.length() < 3) {
             throw new IllegalArgumentException("Exception: name.length < 3");
         }

@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson07.animals;
+package ru.itmo.lessons.lesson0708.animals;
 
 public class Mouse {
     /* private */ public final int speed /* = 20 */;

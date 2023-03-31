@@ -25,10 +25,28 @@ public class Lesson07 {
         Person[] people = {student01, student02, teacher01, teacher02};
         for (Person person : people) {
             person.rest();
+            // ((Student)person).getSubject(); - может привести к ClassCastException,
+            // т.к в массиве не только экземпляры типа Student,
+            // но и экземпляры типа Teacher
+            if (person instanceof Student) { // instanceof вернет true, если
+                // person принадлежит типу Student
+
+                // инструкция ((Student) person).getSubject()
+                // аналогична следующему коду:
+                // Student s = (Student) person;
+                // s.getSubject()
+                System.out.println(((Student)person).getSubject());
+            }
         }
+
         // общий тип данных используется для передачи объектов в методы
+        Headmaster headmaster = new Headmaster();
+        headmaster.invite(student01);
+        headmaster.invite(student02);
+        headmaster.invite(teacher01);
+        headmaster.invite(teacher02);
 
-
-
+        teacher01.teach(student01);
+        teacher01.teach(headmaster);
     }
 }

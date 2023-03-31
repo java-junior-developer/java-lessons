@@ -1,6 +1,6 @@
 package ru.itmo.lessons.lesson0708.school;
 
-public final class Teacher extends Person {
+public final class Teacher extends Person implements ITeach{
     private final String subject;
     private int level;
     public Teacher(String subject, int level, String name){
@@ -29,5 +29,12 @@ public final class Teacher extends Person {
     @Override
     public void rest() {
         System.out.println("реализация метода rest класса Teacher");
+    }
+
+    @Override
+    public void teach(ILearn student){
+        // можно вызвать только методы, объявленные в ILearn
+        student.defaultLearning();
+        student.learn(this.level);
     }
 }
