@@ -12,6 +12,7 @@ public class Lesson07 {
         Person teacher02 = new Teacher("астрономия", 14, "Григорий Петрович");
         // для вызова доступны только методы и свойства,
         // объявленные в классе Person
+
         // если методы были переопределны в дочерних классах,
         // то при вызове будет использоваться их реализация
         student02.setAge(8);
@@ -26,8 +27,7 @@ public class Lesson07 {
         for (Person person : people) {
             person.rest();
             // ((Student)person).getSubject(); - может привести к ClassCastException,
-            // т.к в массиве не только экземпляры типа Student,
-            // но и экземпляры типа Teacher
+            // т.к в массиве не только экземпляры типа Student, но и экземпляры типа Teacher
             if (person instanceof Student) { // instanceof вернет true, если
                 // person принадлежит типу Student
 
@@ -40,6 +40,7 @@ public class Lesson07 {
         }
 
         // общий тип данных используется для передачи объектов в методы
+
         Headmaster headmaster = new Headmaster();
         headmaster.invite(student01);
         headmaster.invite(student02);
