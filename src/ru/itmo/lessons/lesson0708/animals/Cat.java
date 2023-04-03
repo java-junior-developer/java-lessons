@@ -9,15 +9,15 @@ public class Cat {
 
     private long winner;
     public Cat(int speed, int weight){
-        if (speed < 10) {
-            throw new IllegalArgumentException("Exception: speed < 10");
+        if (speed < AnimalsSettings.CAT_MIN_SPEED) {
+            throw new IllegalArgumentException("Exception: speed < " + AnimalsSettings.CAT_MIN_SPEED);
         }
-        if (weight < 50) {
-            throw new IllegalArgumentException("Exception: weight < 50");
+        if (weight < AnimalsSettings.CAT_MIN_WEIGHT) {
+            throw new IllegalArgumentException("Exception: weight < " + AnimalsSettings.CAT_MIN_WEIGHT);
         }
         this.speed = speed;
         this.weight = weight;
-        mice = new Mouse[100];
+        mice = new Mouse[AnimalsSettings.MICE_COUNT];
     }
 
     public void setName(String name) {
@@ -53,5 +53,9 @@ public class Cat {
         }
         if (weight > enemy.weight) winner++;
         else enemy.winner++;
+    }
+
+    public static Cat getCat(){
+        return new Cat((int) (Math.random()* 30),(int) (Math.random()* 50));
     }
 }
