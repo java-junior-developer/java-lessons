@@ -13,11 +13,17 @@ public class Lesson11 {
         System.out.println(point01 == point02); // false
         System.out.println(point01.equals(point02)); // true
 
+        Point point01Copy = point01.clone();
+        System.out.println(point01Copy.equals(point01)); // true
+        System.out.println(point01Copy == point01); // false
+
         // все классы в java наследуются от класса Object
 
         Figure figure01 = new Figure(2);
         figure01.addPoint(point01);
         figure01.addPoint(point02);
         System.out.println(figure01);
+
+
     }
 }

@@ -2,7 +2,7 @@ package ru.itmo.lessons.lesson11;
 
 import java.util.Objects;
 
-public class Point {
+public class Point implements Cloneable{
     private final int x;
     private final int y;
 
@@ -17,6 +17,16 @@ public class Point {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public /* protected */ Point /* Object */ clone() {
+        try {
+            return (Point) super.clone(); // Cloneable
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Клонирование не поддерживается");
+            return null;
+        }
     }
 
     @Override
