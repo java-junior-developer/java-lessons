@@ -1,6 +1,6 @@
 package ru.itmo.lessons.lesson09.animals;
 
-public class Lesson07 {
+public class Lesson09 {
 
     // static
     // со свойсвами
