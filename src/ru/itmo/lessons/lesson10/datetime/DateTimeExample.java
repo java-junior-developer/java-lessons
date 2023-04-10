@@ -12,7 +12,6 @@ import static java.time.temporal.TemporalAdjusters.*;
 
 public class DateTimeExample {
     public static void getLocalDateTimeDescription(){
-
         // Работа с датой и временем - класс LocalDateTime (основные методы):
         // Получение текущей даты и времени
         LocalDateTime current = LocalDateTime.now();

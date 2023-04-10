@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+
 public class DateAndCalendar {
     public static void main(String[] args) throws ParseException {
         // классы Date и Calendar использовались до появления dateTime Api в java 8
@@ -120,7 +121,7 @@ public class DateAndCalendar {
 //        date = LocalDateTime.ofInstant(input.toInstant(), ZoneId.systemDefault());
 
         LocalDateTime now = LocalDateTime.now();
-        Date nowDate =  Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+        Date nowDate = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
 
     }
 }

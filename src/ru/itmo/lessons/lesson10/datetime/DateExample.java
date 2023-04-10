@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class DateExample {
-
     public static void getLocalDateDescription() {
         // Работа только с датой - класс LocalDate (основные методы):
         // Получение текущей даты
