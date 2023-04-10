@@ -49,21 +49,25 @@ class User {
     // ответственность класса User хранить данные о пользователе,
     // он не должен заниматься их сохранением, получением и тп
     // Данный функционал правильно вынести в отдельный класс
-    public User[] getAllUsers(){
+    public User[] getAllUsers() {
         return storage;
     }
+
     public void saveUser(User user) {
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] == null) storage[i] = user;
         }
     }
 }
+
 // ответственность класса Storage - сохранение, получение и тп пользователей
 class Storage {
     private User[] storage = new User[40];
-    public User[] getAllUsers(){
+
+    public User[] getAllUsers() {
         return storage;
     }
+
     public void saveUser(User user) {
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] == null) {

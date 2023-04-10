@@ -1,5 +1,6 @@
 package ru.itmo.lessons.lesson10.oop;
 
+
 public class InterfaceSegregationPrinciple {
     public static void main(String[] args) {
         Connection connection = new Connection();

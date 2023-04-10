@@ -13,6 +13,7 @@ public class LiskovSubstitutionPrinciple {
         human.catchAnimal(dog);
     }
 }
+
 abstract class Animal {
     private String name;
 
@@ -46,12 +47,14 @@ class Dog extends Animal {
 
 class Human {
     private Animal[] animals = new Animal[10];
-    public void catchAnimal(Animal animal){
+
+    public void catchAnimal(Animal animal) {
         for (int i = 0; i < animals.length; i++) {
             if (animals[i] == null) {
                 System.out.println(animal.saySomething());
                 animals[i] = animal;
-            };
+            }
+            ;
         }
     }
 }

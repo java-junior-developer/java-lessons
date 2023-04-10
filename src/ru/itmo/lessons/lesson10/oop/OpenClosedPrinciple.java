@@ -29,7 +29,7 @@ interface IPay {
     boolean pay(double money);
 }
 
-class YaPay implements IPay{
+class YaPay implements IPay {
 
     @Override
     public boolean pay(double money) {
