@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson0708.animals;
+package ru.itmo.lessons.lesson09.animals;
 
 public class Cat {
     private String name = "безымянный";
@@ -8,7 +8,7 @@ public class Cat {
     private int index; // 0
 
     private long winner;
-    public Cat(int speed, int weight){
+    private Cat(int speed, int weight){
         if (speed < AnimalsSettings.CAT_MIN_SPEED) {
             throw new IllegalArgumentException("Exception: speed < " + AnimalsSettings.CAT_MIN_SPEED);
         }

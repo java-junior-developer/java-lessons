@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson0708.properties;
+package ru.itmo.lessons.lesson09.handlers;
 
 import java.util.Scanner;
 

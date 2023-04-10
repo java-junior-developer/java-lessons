@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson0708.animals;
+package ru.itmo.lessons.lesson09.animals;
 
 public class Lesson07 {
 
@@ -13,8 +13,8 @@ public class Lesson07 {
     // static блок
     public static void main(String[] args) {
          Mouse mouse01 = Mouse.getMouse();
-         Cat cat01 = new Cat(12, 67); // 12, 67, [null, null, null, ... ]
-         Cat cat02 = new Cat(18, 55); // 18, 55, [null, null, null, ... ]
+         Cat cat01 = Cat.getCat();
+         Cat cat02 = Cat.getCat();
          cat02.setName("Гришка");
 
          cat01.catchMouse(mouse01);

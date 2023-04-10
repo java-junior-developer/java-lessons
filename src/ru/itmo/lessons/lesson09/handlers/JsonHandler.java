@@ -1,8 +1,8 @@
-package ru.itmo.lessons.lesson0708.properties;
+package ru.itmo.lessons.lesson09.handlers;
 
-public class TxtHandler extends Handler{
+public class JsonHandler extends Handler{
 
-    public TxtHandler(String fileName) {
+    public JsonHandler(String fileName) {
         super(fileName);
     }
 

@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson0708.animals;
+package ru.itmo.lessons.lesson09.animals;
 
 public class AnimalsSettings {
     public final static int MICE_COUNT = 100;

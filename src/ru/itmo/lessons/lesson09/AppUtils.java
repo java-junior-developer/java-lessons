@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson0708.animals;
+package ru.itmo.lessons.lesson09;
 
 public class AppUtils {
     // метод принимающий на вход 2 числа, возвращающий минимальное
