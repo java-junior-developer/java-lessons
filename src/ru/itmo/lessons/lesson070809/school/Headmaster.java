@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson0708.school;
+package ru.itmo.lessons.lesson070809.school;
 
 public class Headmaster implements ILearn{
     public void invite(Person person){
