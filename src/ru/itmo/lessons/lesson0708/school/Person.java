@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson070809.school;
+package ru.itmo.lessons.lesson0708.school;
 
 // нельзя создать экземпляры abstract класса
 // может содержать абстрактные методы (без реализации),

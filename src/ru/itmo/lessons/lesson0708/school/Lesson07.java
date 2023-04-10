@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson070809.school;
+package ru.itmo.lessons.lesson0708.school;
 
 public class Lesson07 {
     public static void main(String[] args) {
