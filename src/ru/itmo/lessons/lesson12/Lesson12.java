@@ -65,31 +65,7 @@ public class Lesson12 {
             throw new RuntimeException(e.getMessage(), e);
         }
 
-        // TODO::
-        //  1. объявить класс CalculatorException - исключение времени компиляции,
-        //  * конструктор должен принимать на вход сообщение и передавать его в соответствующий конструктор родителя
-        //  * переопределить метод getMessage на своё усмотрение
-        //  2. Объявить класс с набором статических методов:
-        //  * plus - возвращает результат сложения положительных чисел,
-        //  если числа не положительные необходимо выбросить CalculatorException
-        //  * minus - возвращает результат вычитания положительных чисел,
-        //  если числа не положительные необходимо выбросить CalculatorException
-        //  * random - возвращает случайное число в диапазоне от min до max
-        //  3. Вызвать методы в точке входа
 
-
-
-        // TODO::
-        //  Объявить метод static void throwException(Status status) throws JarException, FileNotFoundException, AccessDeniedException,
-        //  которы принимает на вход enum и выбрасывает следующие исключения в зависимости от значения status:
-        //  1. если status FILE_NOT_FOUND, выбрасывает FileNotFoundException
-        //  2. если status ACCESS_DENIED, выбрасывает AccessDeniedException
-        //  3. если status JAR_ERROR, выбрасывает JarException.
-        //  При вызове метода throwException обработать исключения следующим образом:
-        //   FileNotFoundException - выводить в консоль стек трейс,
-        //   AccessDeniedException* - выводить в консоль сообщение исключения (метод getMessage()) и выбрасывать исключение времени выполнения,
-        //   JarException* - выводить в консоль стек трейс.
-        //  enum с необходимыми константами нужно создать.
 
     }
 
