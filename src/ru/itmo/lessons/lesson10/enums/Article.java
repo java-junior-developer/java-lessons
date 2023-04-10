@@ -3,6 +3,7 @@ package ru.itmo.lessons.lesson10.enums;
 public class Article {
     private String name;
     private Country country; // null
+
     // ... остальные свойства
 
     public Article(String name) {

@@ -15,6 +15,5 @@ public enum Operation {
         }
     };
 
-
     public abstract int action(int a, int b);
 }
