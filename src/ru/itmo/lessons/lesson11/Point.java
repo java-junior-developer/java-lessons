@@ -22,7 +22,7 @@ public class Point implements Cloneable{
     @Override
     public /* protected */ Point /* Object */ clone() {
         try {
-            return (Point) super.clone(); // Cloneable
+            return (Point) super.clone();
         } catch (CloneNotSupportedException e) {
             System.out.println("Клонирование не поддерживается");
             return null;

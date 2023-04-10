@@ -5,10 +5,8 @@ public class Lesson11 {
         Point point01 = new Point(12, -33);
         Point point02 = new Point(12, -33);
 
-        System.out.println(point01);
-        // System.out.println(point01.toString());
-        System.out.println(point02);
-        // System.out.println(point02.toString());
+        System.out.println(point01); // System.out.println(point01.toString());
+        System.out.println(point02); // System.out.println(point02.toString());
 
         System.out.println(point01 == point02); // false
         System.out.println(point01.equals(point02)); // true

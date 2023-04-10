@@ -25,7 +25,7 @@ public class Figure {
         ind++;
     }
 
-    @Override  // [p1, p2, null, null, null]
+    @Override
     public /* protected */ Figure /* Object */ clone() {
         // super.clone()
         Figure figure = new Figure(points.length); // super.clone()
