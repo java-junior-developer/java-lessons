@@ -68,7 +68,7 @@ public class Lesson12 {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
-            throw new RuntimeException(e.getMessage(), e);
+            // throw new RuntimeException(e.getMessage(), e);
         }
 
         // class someException01 extends Exception {} - исключение времени компиляции
@@ -95,18 +95,56 @@ public class Lesson12 {
         }
 
 
-        // TODO::
-        //  Объявить метод static void throwException(Status status) throws JarException, FileNotFoundException, AccessDeniedException,
-        //  которы принимает на вход enum и выбрасывает следующие исключения в зависимости от значения status:
-        //  1. если status FILE_NOT_FOUND, выбрасывает FileNotFoundException
-        //  2. если status ACCESS_DENIED, выбрасывает AccessDeniedException
-        //  3. если status JAR_ERROR, выбрасывает JarException.
-        //  При вызове метода throwException обработать исключения следующим образом:
-        //   FileNotFoundException - выводить в консоль стек трейс,
-        //   AccessDeniedException* - выводить в консоль сообщение исключения (метод getMessage()) и выбрасывать исключение времени выполнения,
-        //   JarException* - выводить в консоль стек трейс.
-        //  enum с необходимыми константами нужно создать.
+        // Обработка нескольких типов исключений
+        // 1. разные типы исключений нужно обработать разными способами (несколько блоков catch)
+        try {
+            // потенциально опасный код, в случае исключительной ситуации необходимо перехватить
+            // ArithmeticException или ClassCastException
+        } catch (ArithmeticException exception) {
+            System.out.println("Обработка ArithmeticException " + exception.getMessage());
+        } catch (ClassCastException exception) {
+            System.out.println("Обработка ClassCastException " + exception.getMessage());
+        }
 
+        // 2. разные типы исключений нужно обработать одинаковым способом (оператор |)
+        try {
+            // потенциально опасный код, в случае исключительной ситуации необходимо перехватить
+            // ArithmeticException или ClassCastException, или NullPointerException
+        } catch (ArithmeticException | ClassCastException | NullPointerException exception) {
+            System.out.println("Обработка ClassCastException или ArithmeticException, " +
+                    "или NullPointerException " + exception.getMessage());
+        }
+
+        // 3. разные типы исключений нужно обработать одинаковым способом (через общего родителя)
+        try {
+            // потенциально опасный код, в случае исключительной ситуации необходимо перехватить
+            // исключения времени выполнения
+        } catch (RuntimeException exception) {
+            System.out.println("Обработка RuntimeException " + exception.getMessage());
+        }
+
+        // 4.
+        try {
+            // потенциально опасный код, в случае исключительной ситуации необходимо перехватить
+            // исключения времени выполнения
+        } catch (ClassCastException exception) {
+            System.out.println("Обработка ClassCastException " + exception.getMessage());
+        } catch (RuntimeException exception) {
+            System.out.println("Обработка остальных RuntimeException " + exception.getMessage());
+        }
+
+        // Необязательный блок finally
+
+        try {
+            // ClassCastException
+        } catch (NullPointerException exception) {
+            System.out.println("Обработка NullPointerException " + exception.getMessage());
+        } finally {
+            // код выполнится в случае любого исключения, возникшего в блоке try
+            // возможность обработки исключения блоком catch не имеет значения
+            // используется для инструкций, связанных с закрытием ресурсов
+            // может быть заменен на try with resources - try(){}
+        }
     }
 
     // import java.io.IOException;
