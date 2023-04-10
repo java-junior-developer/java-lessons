@@ -8,7 +8,6 @@ public final class Teacher extends Person implements ITeach{
         this.subject = subject;
         this.level = level;
     }
-
     public String getSubject() {
         return subject;
     }

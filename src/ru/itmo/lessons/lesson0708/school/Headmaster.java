@@ -1,5 +1,6 @@
 package ru.itmo.lessons.lesson0708.school;
 
+
 public class Headmaster implements ILearn{
     public void invite(Person person){
         System.out.println("Директор вызвал " + person.getName());

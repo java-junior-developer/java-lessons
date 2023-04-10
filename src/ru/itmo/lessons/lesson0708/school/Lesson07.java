@@ -2,6 +2,7 @@ package ru.itmo.lessons.lesson0708.school;
 
 public class Lesson07 {
     public static void main(String[] args) {
+
         Student student01 = new Student("Марк", "химия");
         student01.setAge(12);
         Teacher teacher01 = new Teacher("биология", 10, "Елена Олеговна");

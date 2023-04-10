@@ -20,6 +20,7 @@ package ru.itmo.lessons.lesson0708.school;
 // разрешена имплементация нескольких интерфейсов через запятую
 // все абстрактные методы должны быть реализованы
 // default методы можно переопределить
+
 public final class Student extends Person implements ILearn{
     private String subject; // изучаемый предмет
     private int level; // уровень знаний

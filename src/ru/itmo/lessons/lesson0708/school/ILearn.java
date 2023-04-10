@@ -1,5 +1,6 @@
 package ru.itmo.lessons.lesson0708.school;
 
+
 public interface ILearn {
     // могут содержать константы
     // могут содержать static методы c реализацией

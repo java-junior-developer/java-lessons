@@ -3,6 +3,7 @@ package ru.itmo.lessons.lesson0708.school;
 // нельзя создать экземпляры abstract класса
 // может содержать абстрактные методы (без реализации),
 // которые необходимо реализовать в дочерних не abstract классах
+
 abstract public class Person {
     protected String name;
     protected int age;
