@@ -2,6 +2,7 @@ package ru.itmo.lessons.lesson13.bounded;
 
 public class Lesson13Bounded {
     public static void main(String[] args) {
+
         Train train01 = new Train("train01", 7);
 
         Car car01 = new Car(Repaintable.Color.ORANGE, "car01");
@@ -14,6 +15,7 @@ public class Lesson13Bounded {
         // 2. поэтому в <> можно указать тип, который является типом Vehicle и типом Repaintable, плюс любых его наследников
         // в данном случае только Car отвечает данным требованиям: Car extends Vehicle implements Repaintable
         // 3. в качестве generic свойства можно передать тип указанный в <> и всех его наследников
+
         Service<Car> service01 = new Service<>(car01);
         Service<Car> service02 = new Service<>(mini01);
         Service<MiniCar> service03 = new Service<>(mini01);
