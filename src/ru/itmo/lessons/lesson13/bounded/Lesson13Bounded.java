@@ -8,6 +8,16 @@ public class Lesson13Bounded {
 
         Bus bus01 = new Bus("bus01");
 
-        Service service = new Service();
+        MiniCar mini01 = new MiniCar(Repaintable.Color.BLUE, "mini01");
+
+        // 1. public class Service<T extends Vehicle & Repaintable> {}
+        // 2. поэтому в <> можно указать тип, который является типом Vehicle и типом Repaintable, плюс любых его наследников
+        // в данном случае только Car отвечает данным требованиям: Car extends Vehicle implements Repaintable
+        // 3. в качестве generic свойства можно передать тип указанный в <> и всех его наследников
+        Service<Car> service01 = new Service<>(car01);
+        Service<Car> service02 = new Service<>(mini01);
+        Service<MiniCar> service03 = new Service<>(mini01);
+
     }
+
 }
