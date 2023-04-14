@@ -1,5 +1,7 @@
 package ru.itmo.lessons.lesson14;
 
+import ru.itmo.lessons.lesson14.task.task01.Fruit;
+
 import java.util.*;
 
 public class Lesson14 {
@@ -14,7 +16,7 @@ public class Lesson14 {
         countries.add("france"); // добавление в конец списка
         countries.add("germany"); // добавление в конец списка
 
-        countries.add(0,"spain" ); // добавление элемента по индексу 0, остальные элементы сдвинулись
+        countries.add(0, "spain"); // добавление элемента по индексу 0, остальные элементы сдвинулись
 
         countries.set(0, "turkey"); // замена элемента с индексом 0 на "turkey"
 
@@ -103,3 +105,20 @@ public class Lesson14 {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
