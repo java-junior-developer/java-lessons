@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson14;
+package ru.itmo.lessons.lesson14.task.task01;
 
 import java.util.Comparator;
 import java.util.Objects;

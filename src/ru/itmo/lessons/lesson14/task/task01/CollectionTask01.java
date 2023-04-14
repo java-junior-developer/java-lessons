@@ -1,6 +1,6 @@
-package ru.itmo.lessons.lesson14;
+package ru.itmo.lessons.lesson14.task.task01;
 
-public class CollectionTask {
+public class CollectionTask01 {
     public static void main(String[] args) {
 
         // реализовать методы класса FruitStorage
