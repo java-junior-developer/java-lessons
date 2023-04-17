@@ -9,14 +9,13 @@ public class Lesson15 {
         // String - тип данных ключей, Integer - тип данных значений
         HashMap<String, Integer> customers = new HashMap<>();
 
-        customers.put("Москва", 790); // добавление пары
-        customers.put("Ростов", 240); // добавление пары
-        customers.put("Великий Новгород", 20); // добавление пары
-        customers.put(null, null); // добавление пары
+        customers.put("Москва", 790); // добавление пары 1
+        customers.put("Ростов", 240); // добавление пары 2
+        customers.put("Великий Новгород", 20); // добавление пары 3
         customers.put("Ростов", 300); // добавление пары, значение будет перезаписано, т.к. ключ уже содержится в map
-        customers.put("Самара", 560); // добавление пары
+        customers.put("Самара", 560); // добавление пары 5
 
-        System.out.println(customers.size());
+        System.out.println(customers.size()); // 5
 
         customers.remove(null); // удаление по ключу
         customers.remove("Ростов", 300); // удаление по ключу и значению. Пара будет удалена, т.к. ключ содержится в map
@@ -24,9 +23,10 @@ public class Lesson15 {
         customers.remove("Москва", 240); // удаление по ключу и значению. Пара будет удалена, ключ содержится в map,
         // но ему не соответствует переданное значение
 
-        System.out.println(customers.size());
+        System.out.println(customers.size()); // 3
 
         customers.replace("Москва", 800); // заменит значение по ключу
+        // вернет ссылку на значение до замены
         customers.replace("Великий Новгород", 20, 18); // замена значения по ключу и значению.
         // Значение будет заменено, т.к. ключ содержится в map и ему соответствует переданное значение - 20
 
@@ -41,12 +41,20 @@ public class Lesson15 {
         System.out.println(customers.getOrDefault("Москва", -1)); // 800
         System.out.println(customers.getOrDefault("Ростов", -1)); // -1
 
-        if (customers.containsKey("Санкт-Петербург")) System.out.println("Информация о городе содержится в map");
-        if (customers.containsValue(1000)) System.out.println("В map есть значение 1000");
+        if (customers.containsKey("Санкт-Петербург")) {
+            System.out.println("Информация о городе содержится в map");
+        }
+        if (customers.containsValue(1000)) {
+            System.out.println("В map есть значение 1000");
+        }
+
 
 
         // EnumMap
         EnumMap<AppRole, String> enumMap = new EnumMap<>(AppRole.class); // ссылка на класс перечисления
+        // -> public enum AppRole {
+        //        USER, ADMIN
+        //    }
         // значения хранятся в массиве - values = [null, null],
         // ключе в EnumMap не хранятся
         enumMap.put(AppRole.USER, "Пользователь");
@@ -79,6 +87,14 @@ public class Lesson15 {
         // sortedCustomers.put(null, null); ошибка, нельзя использовать null в качестве ключей
         // sortedCustomers.get(null); ошибка, т.к. ключи не могут быть null
 
+        for (String key : sortedCustomers.keySet()) {
+            System.out.println("ключ " + key);
+        }
+
+        for (Integer integer : sortedCustomers.values()) {
+            System.out.println("значение " + integer);
+        }
+
         // Перебор пар map
         for (Map.Entry<String, Integer> pair : customers.entrySet()) {
             if (pair.getValue() > 500) System.out.println(pair.getKey());
@@ -91,3 +107,5 @@ public class Lesson15 {
         USER, ADMIN
     }
 }
+
+
