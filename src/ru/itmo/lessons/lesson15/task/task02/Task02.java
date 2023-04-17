@@ -3,6 +3,7 @@ package ru.itmo.lessons.lesson15.task.task02;
 import java.util.*;
 
 public class Task02 {
+
     public static void main(String[] args) {
         // FIXME:: В решениях не использовать lambda выражения и stream API
 
