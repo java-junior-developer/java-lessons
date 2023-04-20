@@ -43,42 +43,17 @@ class Dog extends Animal {
     }
 }
 public class WildCard {
-    // ? - wildcard, может использоваться при объявлении переменных:
+    // ? - wildcards, может использоваться при объявлении переменных:
 
     // 1. ограничение сверху (upper bounding)
-    // <? extends Cat> - может быть Cat и любой наследник
+    // <? extends Cat> - может быть Cat и любой подтип (наследник)
 
     // 2. ограничение снизу (lower bounding)
-    // <? super Cat> - может быть Cat и любой супертип
+    // <? super Cat> - может быть Cat и любой супертип (родитель)
 
     // 3.Захват подстановочных знаков (wildcard capture)
     // <?> - может быть все, что угодно
 
-    // метод принимает на вход списки Cat или его супертипов (Animal, Object, Eatable, Runnable)
-    public static void addAnimalsLower(List<? super Cat> list, int count) {
-        for (int i = 0; i < count; i++) {
-            list.add(new Cat());
-            list.add(new Kitten());
-            // list.add(new Animal()); FIXME: ПОЧЕМУ КОМПИЛЯТОР НЕ ПОЗВОЛИТ добавить супертипы Cat, например Animal ???
-        }
-
-        // из контейнера с wildcard "? super" можно прочитать только Object
-        for (Object element: list) { // FIXME: ПОЧЕМУ КОМПИЛЯТОР НЕ ПОЗВОЛИТ прочитать, например Cat ???
-            System.out.println(element.toString());
-        }
-    }
-
-    // метод принимает на вход списки Cat или его наследников (Kitten)
-    public static void addAnimalsUpper(List<? extends Cat> list, int count) {
-        // в контейнер с wildcard "? extends" можно добавить только null
-        for (int i = 0; i < count; i++) { // FIXME: ПОЧЕМУ КОМПИЛЯТОР НЕ ПОЗВОЛИТ добавить ничего, кроме null ???
-            // list.add(null);
-        }
-
-        for (Cat cat : list) { // FIXME: ПОЧЕМУ КОМПИЛЯТОР ПОЗВОЛИТ прочитать Cat ???
-            System.out.println(cat.toString());
-        }
-    }
 
     // The Get and Put Principle или PECS (Producer ? Extends - Consumer ? Super)
     public static void whiteCats(List<? extends Cat> producer, List<? super Cat> consumer) {
@@ -86,7 +61,43 @@ public class WildCard {
             if ("white".equals(cat.getColor())) consumer.add(cat);
         }
     }
+
+
+    // метод принимает на вход списки Cat или его супертипов (Animal, Object, Eatable, Runnable)
+
+
+    public static void addAnimalsLower(List<? super Cat> list, int count) {
+        for (int i = 0; i < count; i++) {
+            list.add(new Cat());
+            list.add(new Kitten());
+            // list.add(new Animal()); FIXME: ПОЧЕМУ КОМПИЛЯТОР НЕ ПОЗВОЛИТ добавить супертипы Cat, например Animal ???
+        }
+        // из контейнера с wildcard "? super" можно прочитать только Object
+        for (Object element: list) { // FIXME: ПОЧЕМУ КОМПИЛЯТОР НЕ ПОЗВОЛИТ прочитать, например Cat ???
+            System.out.println(element.toString());
+        }
+    }
+
+
+
+    // метод принимает на вход списки Cat или его наследников (Kitten)
+    public static void addAnimalsUpper(List<? extends Cat> list, int count) {
+        // в контейнер с wildcard "? extends" можно добавить только null
+        for (int i = 0; i < count; i++) { // FIXME: ПОЧЕМУ КОМПИЛЯТОР НЕ ПОЗВОЛИТ добавить ничего, кроме null ???
+            // list.add(null); на практике добавление в контейнер не используется
+        }
+
+        for (Cat cat : list) { // FIXME: ПОЧЕМУ КОМПИЛЯТОР ПОЗВОЛИТ прочитать Cat ???
+            System.out.println(cat.toString());
+        }
+    }
+
+    // метод принимает на вход списки с любыми объектами
+    public static void wildCapture(List<?> list){
+        // можно добавить только null, прочитать только Object
+    }
     public static void main(String[] args) {
+
 
         List<Animal> animals = new ArrayList<>();
         List<Cat> cats = new ArrayList<>();
@@ -95,13 +106,15 @@ public class WildCard {
         List<Dog> dogs = new ArrayList<>();
         List<Eatable> eatables = new ArrayList<>();
 
-        // метод принимает на вход списки Cat или его супертипов (Animal, Object, Eatable, Runnable)
+        // метод принимает на вход списки Cat или
+        // его супертипов (Animal, Object, Eatable, Runnable)
         addAnimalsLower(animals, 3);
         addAnimalsLower(cats, 5);
         addAnimalsLower(objects, 2);
         // addAnimalsLower(kittens, 12);
         // addAnimalsLower(dogs, 12);
         addAnimalsLower(eatables, 7);
+
 
         // метод принимает на вход списки Cat или его наследников (Kitten)
         // addAnimalsUpper(animals, 4);
@@ -116,9 +129,10 @@ public class WildCard {
 
 
         List<Animal> animalList = new ArrayList<>();
-        List<? extends Animal> animalListUpper = new ArrayList<>();
-        List<? super Animal> animalListLower = new ArrayList<>();
-        List<?> arrayList = new ArrayList<>();
+        // List<? extends Animal> animalListUpper = new ArrayList<>();
+        // List<? super Animal> animalListLower = new ArrayList<>();
+        // List<?> arrayList = new ArrayList<>();
+        // можно добавить только null, прочитать только Object
 
 
         // Ковариантность - сохранение иерархии наследования исходных типов в производных типах в том же порядке, т.е.
@@ -127,7 +141,7 @@ public class WildCard {
         Cat[] catsArr = new Cat[10]; // массивы ковариантны
         Animal[] animalsArr = catsArr;
         animalsArr[0] = new Cat();
-        // НО: animalsArr[1] = new Dog(); -> ArrayStoreException - при попытке добавить неправильный тип объекта в массив
+        // animalsArr[1] = new Dog(); // -> ArrayStoreException - при попытке добавить неправильный тип объекта в массив
 
         // Инвариантность - отсутствие наследования между производными типами.
         // если Cat - подтип Animal, то List<Cat> - не подтип List<Animal> и наоборот.
@@ -150,3 +164,16 @@ public class WildCard {
         List<? super Cat> cats04 = animals04; // FIXME: ПОЧЕМУ КОМПИЛЯТОР ПОЗВОЛИТ так присвоить ссылку ???
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
