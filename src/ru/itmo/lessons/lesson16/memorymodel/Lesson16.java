@@ -18,6 +18,7 @@ public class Lesson16 {
     }
 
     public static void main(String[] args) {
+        var i = 90;
         DevelopingClass defaultObj = DevelopingClass.getDefault();
         defaultObj.minusValue(8);
         defaultObj.plusValue(33);
@@ -37,6 +38,7 @@ public class Lesson16 {
         // слабые ссылки (объекты могут быть удалены сборщиком, если есть только слабые ссылки)
         WeakReference<DevelopingClass> weak01 = new WeakReference<>(strongKey01);
         WeakReference<DevelopingClass> weak02 = new WeakReference<>(strongKey02);
+
 
         HashMap<DevelopingClass, String> hashMap = new HashMap<>();
         hashMap.put(strongKey01, "strong01");
