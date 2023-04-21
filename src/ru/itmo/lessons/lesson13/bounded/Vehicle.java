@@ -8,6 +8,10 @@ abstract public class Vehicle implements Repairable{
         this.number = number;
     }
 
+    public int getWearLevel() {
+        return wearLevel;
+    }
+
     public void changeNumber(String newNumber) {
         number = newNumber;
     }
