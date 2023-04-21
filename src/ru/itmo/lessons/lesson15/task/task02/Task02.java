@@ -116,24 +116,35 @@ public class Task02 {
     }
 
     private static void task0303(String text) {
-        // FIXME: реализация похожа на метод getUsersByAge класса UserStorage
-        //  1. Создать массив строк из строки text (нужный метод найти самостоятельно)
-        //  2. Создать список из элементов массива, полученного в п.2 (способ создания списка из массива см в файле map.md)
-        //  3. Объявить переменную типа Map<String, Integer>, где - ключи (String) - слово, значения (Integer) - частота встречаемости,
-        //  вызвать метод task02, передать в него список из п.2, значение которое вернет метод присвоить объявленной переменой
-        //  (так мы получим слова и частоту повторений)
-        //  4. Создать список (ArrayList<Map.Entry<String, Integer>>) из пар мапы, объявленной в п.3
-        //  (для получения коллекции пар использовать метод map.entrySet())
-        //  5. Объявить класс ValuesComparator implements Comparator<Map.Entry<String, Integer>>,
-        //  он позволит отсортировать список из п.4 по значениям (частоте встречаемости слов)
-        //  6. Интерфейс обяжет Вас написать реализацию метода public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2):
-        //     2.1. у объектов o1 и o2 получить значения свойства value (метод getValue) и сравнить числа
-        //     2.3. вернуть из метода 0, если числа равны,
-        //     вернуть из метода отрицательное число, если значение value объекта o1 больше значения value объекта o2,
-        //     вернуть из метода положительное число, если значение value объекта o1 меньше значения value объекта o2
-        //   7. Объявить объект класса ValuesComparator
-        //   8. Вызвать метод sort() списка из п.4, передать в него компаратор из п.7
-        //   9. Написать цикл на 10 итераций (или по количеству элементов списка (если их меньше 10)).
-        //   Цикл должен перебирать список п.4, на каждой итерации выводить в консоль значение свойства key (метод getKey) элемента списка
+        Map<String, Integer> map = task02(Arrays.asList(text.split(" ")));
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+
+        /*class ValueComparator implements Comparator<Map.Entry<String, Integer>> {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                // из локального класса есть доступ к локальным переменным метода
+                // локальные переменные доступны только для чтения
+                return o2.getValue() - o1.getValue();
+            }
+        }
+        list.sort(new ValueComparator()); */
+
+        // анонимный класс
+        Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                // из анонимного класса есть доступ к локальным переменным метода
+                // локальные переменные доступны только для чтения
+                return o2.getValue() - o1.getValue();
+            }
+        };
+        list.sort(valueComparator);
+
+        int count = Math.min(10, list.size());
+        for (int i = 0; i < count; i++) {
+            System.out.println(list.get(i).getKey() + "=" + list.get(i).getValue());
+        }
     }
+
+    // static class ValueComparator implements Comparator<Map.Entry<String, Integer>>{}
 }
