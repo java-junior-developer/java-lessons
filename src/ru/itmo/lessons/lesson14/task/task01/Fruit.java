@@ -8,6 +8,10 @@ public class Fruit {
     private double price;
     private int count;
 
+
+    public Fruit() {
+    }
+
     public Fruit(FruitType type, int price, int count) {
         this.type = type;
         this.price = price;
