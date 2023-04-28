@@ -1,5 +1,6 @@
 package ru.itmo.lessons.lesson19.tasks.task02;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Task02 {
@@ -26,6 +27,17 @@ public class Task02 {
         //      где String - номер (number) аккаунта,
         //      Long - сумма транзакций (sum) по данному аккаунту
         //  2. найти сумму транзакций по всем аккаунтам (возможные решения попробуйте найти самостоятельно)
+        // long sum = transactionStream.mapToLong(tr -> tr.getSum()).sum(); // способ решения №1
+
+        // long sum = transactionStream.collect(Collectors.summingLong(tr -> tr.getSum())); // способ решения №2
+
+        // способ решения №3
+        /*long sum = transactionStream.reduce(
+        0,
+                (currentSum, transaction) -> currentSum + (int) transaction.getSum(),
+                (i1, i2) -> i1 + i2 // Integer::sum // BinaryOperator<U> combiner - U apply(U t, U u);
+        );*/
+
 
     }
 }

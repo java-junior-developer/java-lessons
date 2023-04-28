@@ -4,16 +4,21 @@ import ru.itmo.lessons.lesson14.task.task01.Fruit;
 
 import java.util.*;
 import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lesson19 {
 
     public static void main(String[] args) {
+
+
         // public interface BiFunction<T, U, R>: R apply(T t, U u);
-        // public interface BinaryOperator<T>: T apply(T t1, T t2);
+        // public interface BinaryOperator<T>: Double apply(Double t1, Double t2);
         BinaryOperator<Double> plus01 = (d01, d02) -> d01 + d02;
+
         System.out.println(plus01.apply(3.3, 4.4));
         // ИмяКласса::имяМетода - ссылка на метода
         BinaryOperator<Double> plus02 = Double::sum;
@@ -55,7 +60,7 @@ public class Lesson19 {
                 .map(integer -> integer < 0 ? 0 : integer)
                 .sorted(Comparator.reverseOrder())
                 .map(integer -> integer + " deg")
-                .map(String::toUpperCase) // R apply(T t);
+                .map(s -> s.toUpperCase()) //  Function<T, R>: R apply(T t);
                 .forEach(s -> {
                     if (!s.equals("0 DEG")) System.out.println(s);
                 });
