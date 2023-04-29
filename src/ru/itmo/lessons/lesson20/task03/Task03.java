@@ -7,6 +7,7 @@ import java.util.*;
 public class Task03 {
     public static void main(String[] args) {
         // Написать реализацию методов task01 - task05
+        // Для некоторых решений может пригодиться метод flatMap класса Stream
     }
 
     public static Double task05(ArrayList<Article> articles){
