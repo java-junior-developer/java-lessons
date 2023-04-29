@@ -14,7 +14,7 @@ public class Article {
         this.authors = new HashMap<>();
         // Author... authors - массив авторов
         for (Author author : authors) {
-            this.authors.put(author.getName(), author);
+            this.authors.put(author.getEmail(), author);
         }
         this.title = title;
         this.category = category;
