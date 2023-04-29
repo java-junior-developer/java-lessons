@@ -17,12 +17,7 @@ public class Task03 {
         // Вернуть самого молодого автора статей категории == category
         return null;
     }
-    public static HashMap<String, ArrayList<Article>> task03(ArrayList<Article> articles){
-        // Вернуть map, где ключи - имя автора,
-        // значения - списки его статей
 
-        return null;
-    }
     public static HashSet<String> task03(ArrayList<Article> articles, Article.Category category){
         // Вернуть множество email авторов статей категории == category
         return null;
