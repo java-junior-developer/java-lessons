@@ -27,7 +27,7 @@ public class Street {
                 return streetName != null && streetName.length() >= 2 && getNamesList().contains(streetName);
             }
 
-            /* private void getValuesExample(){
+            private void getValuesExample(){
                 System.out.println(this); // ссылка на экземпляр NameValidator
                 System.out.println(Street.this); // ссылка на экземпляр Street
                 System.out.println(name); // значение свойства name из класса Street
@@ -35,7 +35,7 @@ public class Street {
                 // свойство description, объявленное в локальном классе (NameValidator)
                 // оттеняет свойство description, объявленное во внешнем классе (Street)
                 System.out.println(Street.this.description); // значение свойства description из класса Street
-            } */
+            }
         }
 
 

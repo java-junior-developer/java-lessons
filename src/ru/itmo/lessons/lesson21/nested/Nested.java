@@ -13,5 +13,6 @@ public class Nested {
         System.out.println(exam01.getMark().getValue());
         System.out.println(exam01.getMark().getDescription());
 
+
     }
 }

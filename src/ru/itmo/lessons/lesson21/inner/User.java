@@ -1,9 +1,5 @@
 package ru.itmo.lessons.lesson21.inner;
 
-// public класс верхнего уровня может быть только один в файле,
-// имя файла должно совпадать с именем класса
-// не public классов верхнего уровня может быть сколько угодно в файле,
-// на такая структура на практике считается плохим тоном
 public class User {
     private int startLevel;
     private String login;

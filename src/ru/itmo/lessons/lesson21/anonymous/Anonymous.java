@@ -36,6 +36,8 @@ public class Anonymous {
                 System.out.println("Send your data");
             }
         };
+
+
         send.setAction(sendAction);
 
         send.getAction().click();
