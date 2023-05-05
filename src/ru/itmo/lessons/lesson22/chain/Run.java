@@ -1,8 +1,8 @@
-package ru.itmo.lessons.lesson21.task03;
+package ru.itmo.lessons.lesson22.chain;
 
 public class Run extends Action{
     @Override
-    public void execute() {
+    void execute() {
         System.out.println("Run");
     }
 }

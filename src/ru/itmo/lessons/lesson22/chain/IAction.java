@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson21.task03;
+package ru.itmo.lessons.lesson22.chain;
 
 public interface IAction { // вместо абстрактного класса
     void execute(); // вместо abstract void execute();
@@ -6,7 +6,8 @@ public interface IAction { // вместо абстрактного класса
     default IAction next(IAction action){ // вместо Action nextAction(Action next) + void doAction()
         return () -> {
             execute();
-            action.execute();
+            action.execute(); // возможны варианты, когда метод следующего в цепочке обработчика,
+            // вызывается только при определенных условиях
         };
     }
 }

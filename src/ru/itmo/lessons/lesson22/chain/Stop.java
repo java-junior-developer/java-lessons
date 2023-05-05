@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson21.task03;
+package ru.itmo.lessons.lesson22.chain;
 
 public class Stop extends Action{
     @Override
