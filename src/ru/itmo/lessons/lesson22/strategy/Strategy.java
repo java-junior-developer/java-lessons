@@ -21,18 +21,27 @@ public class Strategy {
         IAction<Unit> stop = new Stop();
         IAction<Unit> walk = new Walk();
 
-        Unit unit = new Unit(run);
-        unit.move();
+        Unit unit01 = new Unit(run);
+        unit01.move();
 
-        unit.changeAction(walk);
-        unit.move();
+        unit01.changeAction(walk);
+        unit01.move();
 
-        unit.changeAction(stop);
-        unit.move();
+        unit01.changeAction(stop);
+        unit01.move();
 
         // или
-        unit.move(stop);
-        unit.move(run);
-        unit.move(walk);
+        unit01.move(stop);
+        unit01.move(run);
+        unit01.move(walk);
+
+
+        // Фабричный метод - логика по созданию объектов одного типа выносится в отдельный метод
+
+        Unit unit02 = new Unit(run);
+        unit02.move(Unit.getUnitAction(Unit.Type.STOP));
+        unit02.move(Unit.getUnitAction(Unit.Type.RUN));
+        unit02.move(Unit.getUnitAction(Unit.Type.WALK));
+
     }
 }

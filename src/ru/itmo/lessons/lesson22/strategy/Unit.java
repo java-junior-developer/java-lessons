@@ -23,4 +23,17 @@ public class Unit {
     public void move(IAction<Unit> currentAction) {
         currentAction.execute(this);
     }
+
+    static IAction<Unit> getUnitAction(Type type){ // фабричный метод, создающий действия юнитов
+        return switch (type) {
+            case RUN -> new Run();
+            case STOP -> new Stop();
+            case WALK -> new Walk();
+            default -> throw new IllegalArgumentException("Передан неверный тип механики юнита");
+        };
+    }
+
+    public enum Type {
+        RUN, STOP, WALK
+    }
 }
