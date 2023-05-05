@@ -6,7 +6,7 @@ public class Render {
     public Render(Drawable drawable) {
         this.drawable = drawable;
     }
-    public void show(){
-        drawable.draw();
+    public void show(){ // работает с древовидной структурой
+        drawable.draw(); // как с единым объектом
     }
 }

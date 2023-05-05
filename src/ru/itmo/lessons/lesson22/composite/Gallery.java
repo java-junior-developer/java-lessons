@@ -2,7 +2,7 @@ package ru.itmo.lessons.lesson22.composite;
 
 import java.util.ArrayList;
 
-public class Gallery extends Drawable{
+public class Gallery extends Drawable{ // составные объекты - контейнеры
     private ArrayList<Drawable> drawables = new ArrayList<>();
 
     public Gallery(String title) {
@@ -15,6 +15,10 @@ public class Gallery extends Drawable{
 
     @Override
     void draw() {
-        drawables.forEach(drawable -> drawable.draw());
+        System.out.println("Gallery: " + title.toUpperCase());
+        for (Drawable drawable : drawables) {
+            drawable.draw();
+        }
+        System.out.println("--------");
     }
 }
