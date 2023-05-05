@@ -1,4 +1,4 @@
-package ru.itmo.lessons.lesson21.task01;
+package ru.itmo.lessons.lesson22.builder;
 
 public class NutritionFacts {
     private int calories;
