@@ -21,8 +21,6 @@ public class InputOutputStreams {
 
             // 3. возвращает прочитанный байт
             int readByte = inputStream.read();
-        } catch (FileNotFoundException e) {
-            System.out.println("файл не найден");
         } catch (IOException e) {
             System.out.println("во время чтения произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");
@@ -55,8 +53,6 @@ public class InputOutputStreams {
             // 3. возвращает прочитанный байт или -1
             int readByte = bufferedInput.read();
 
-        } catch (FileNotFoundException e) {
-            System.out.println("файл не найден");
         } catch (IOException e) {
             System.out.println("во время чтения произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");
@@ -64,7 +60,7 @@ public class InputOutputStreams {
     }
 
     public static void output(byte[] bytesWithData){
-        try (OutputStream outputStream = /* входящий поток, наследник OutputStream*/){
+        try (OutputStream outputStream = /* исходящий поток, наследник OutputStream*/){
             // 1. записывает байты из bytesWithData в поток
             outputStream.write(bytesWithData);
 
@@ -73,8 +69,6 @@ public class InputOutputStreams {
 
             // 3. записывает один байт в поток
             outputStream.write(bytesWithData[0]);
-        } catch (FileNotFoundException e) {
-            System.out.println("файл является директорией / не может быть создан / не может быть открыт");
         } catch (IOException e) {
             System.out.println("во время записи произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");
@@ -86,27 +80,25 @@ public class InputOutputStreams {
             public AppOutputDecorator(OutputStream out) {
                 super(out);
             }
-
             @Override
             public void write(int b) throws IOException {
                 // операции с данными, например, шифрование, передача преобразованных данных дальше
                 super.write(b);
             }
         }
+
             // основной функционал
-        try (OutputStream outputStream = /* входящий поток, наследник OutputStream*/;
+        try (OutputStream outputStream = /* исходящий поток, наследник OutputStream*/;
              // дополнительный функционал, должен быть наследником FilterOutputStream
              AppOutputDecorator decorator = new AppOutputDecorator(outputStream)){
             // 1. записывает байты из bytesWithData в поток
-            decorator.write(bytesWithData);
+            decorator.write(bytesWithData[0]);
 
             // 2. записывает len байт из bytesWithData в поток с отступом offset
             decorator.write(bytesWithData, 0, bytesWithData.length / 2);
 
             // 3. записывает один байт в поток
             decorator.write(bytesWithData[0]);
-        } catch (FileNotFoundException e) {
-            System.out.println("файл является директорией / не может быть создан / не может быть открыт");
         } catch (IOException e) {
             System.out.println("во время записи произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");

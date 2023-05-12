@@ -37,18 +37,10 @@ public class WriteFiles {
         }
 
         // запись строки, экземпляры Writer и BufferedWriter создаются в методе newBufferedWriter
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(filename), StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(filename),
+                StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
             writer.write(data, 0, data.length());
             // можно записывать в цикле
-        }
-    }
-
-    public static void writeToChannel(String filename, String data) throws IOException {
-        try (RandomAccessFile writer = new RandomAccessFile(filename, "rw");
-             FileChannel channel = writer.getChannel()) {
-            byte[] bytesData = data.getBytes(StandardCharsets.UTF_8);
-            ByteBuffer buff = ByteBuffer.wrap(bytesData);
-            channel.write(buff);
         }
     }
 
@@ -57,6 +49,16 @@ public class WriteFiles {
              DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos))) {
             outStream.writeUTF(data);
             outStream.writeBoolean(true);
+        }
+    }
+
+
+    public static void writeToChannel(String filename, String data) throws IOException {
+        try (RandomAccessFile writer = new RandomAccessFile(filename, "rw");
+             FileChannel channel = writer.getChannel()) {
+            byte[] bytesData = data.getBytes(StandardCharsets.UTF_8);
+            ByteBuffer buff = ByteBuffer.wrap(bytesData);
+            channel.write(buff);
         }
     }
 
