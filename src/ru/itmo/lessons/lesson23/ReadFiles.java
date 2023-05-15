@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+// Java 10 - readWithFilesToStream
+// Java 7 - readWithScanner
 
 public class ReadFiles {
 
@@ -27,7 +29,6 @@ public class ReadFiles {
 
         }
     }
-
 
     public static void readWithBuffer(String filename) throws IOException {
         // чтение в массив байт
@@ -57,13 +58,13 @@ public class ReadFiles {
         }
     }
 
-    // gwrgq5
-    // hg4h24y6
-    // hyw4hj42j6
 
     public static void readWithScanner(String filename) throws IOException {
+        /* Scanner scanner = new Scanner(new File(filename), StandardCharsets.UTF_8)
+                .useDelimiter(" "); для чтения по указанному разделителю */
         try (Scanner scanner = new Scanner(new File(filename), StandardCharsets.UTF_8)) {
             String line = null;
+
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
             }
