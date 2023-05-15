@@ -1,6 +1,5 @@
 package ru.itmo.lessons.lesson24;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
