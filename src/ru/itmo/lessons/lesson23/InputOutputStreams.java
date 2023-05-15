@@ -4,7 +4,7 @@ import java.io.*;
 
 public class InputOutputStreams {
     public static void input(){
-        try (InputStream inputStream = /* входящий поток, наследник InputStream*/){
+        /*try (InputStream inputStream = *//* входящий поток, наследник InputStream*//*){
             // 1. чтение в массив bytes01, возвращает количество прочитанных байт
             byte[] bytes01 = new byte[inputStream.available()];
             inputStream.read(bytes01);
@@ -24,7 +24,7 @@ public class InputOutputStreams {
         } catch (IOException e) {
             System.out.println("во время чтения произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");
-        }
+        }*/
     }
 
 
@@ -32,7 +32,7 @@ public class InputOutputStreams {
 
     public static void inputDecorator(){
             // основной функционал
-        try (InputStream inputStream = /* входящий поток, наследник InputStream*/;
+        /*try (InputStream inputStream = *//* входящий поток, наследник InputStream*//*;
              // дополнительный функционал, должен быть наследником FilterInputStream
              BufferedInputStream bufferedInput = new BufferedInputStream(inputStream)){
 
@@ -56,11 +56,11 @@ public class InputOutputStreams {
         } catch (IOException e) {
             System.out.println("во время чтения произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");
-        }
+        }*/
     }
 
     public static void output(byte[] bytesWithData){
-        try (OutputStream outputStream = /* исходящий поток, наследник OutputStream*/){
+        /*try (OutputStream outputStream = *//* исходящий поток, наследник OutputStream*//*){
             // 1. записывает байты из bytesWithData в поток
             outputStream.write(bytesWithData);
 
@@ -72,7 +72,7 @@ public class InputOutputStreams {
         } catch (IOException e) {
             System.out.println("во время записи произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");
-        }
+        }*/
     }
 
     public static void outputDecorator(byte[] bytesWithData){
@@ -88,7 +88,7 @@ public class InputOutputStreams {
         }
 
             // основной функционал
-        try (OutputStream outputStream = /* исходящий поток, наследник OutputStream*/;
+        /*try (OutputStream outputStream = *//* исходящий поток, наследник OutputStream*//*;
              // дополнительный функционал, должен быть наследником FilterOutputStream
              AppOutputDecorator decorator = new AppOutputDecorator(outputStream)){
             // 1. записывает байты из bytesWithData в поток
@@ -102,6 +102,6 @@ public class InputOutputStreams {
         } catch (IOException e) {
             System.out.println("во время записи произошла ошибка"); // или
             System.out.println("во время закрытия ресурса произошла ошибка");
-        }
+        }*/
     }
 }
