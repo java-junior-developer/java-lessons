@@ -1,15 +1,16 @@
 package ru.itmo.lessons.lesson24;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 
-public class Company {
+public class Company implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final String title;
     private Set<Manager> managers;
-    private Predicate<Manager> condition;
+    private CompanyCondition condition;
 
-    public Company(String name, Predicate<Manager> condition) {
+    public Company(String name, CompanyCondition condition) {
         this.title = name;
         managers = new HashSet<>();
         this.condition = condition;
@@ -19,7 +20,7 @@ public class Company {
         return title;
     }
 
-    public void changeCondition(Predicate<Manager> newCondition){
+    public void changeCondition(CompanyCondition newCondition){
         this.condition = newCondition;
     }
 

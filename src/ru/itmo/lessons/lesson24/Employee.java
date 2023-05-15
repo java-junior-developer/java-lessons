@@ -1,9 +1,10 @@
 package ru.itmo.lessons.lesson24;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-class Employee {
-    public final String title = "Сотрудник";
+public class Employee implements Serializable {
+    transient public final String title = "Сотрудник";
     private String name;
     private double salary;
     private final LocalDate hired;

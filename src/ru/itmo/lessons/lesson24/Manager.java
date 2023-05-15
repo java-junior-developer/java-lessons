@@ -2,7 +2,7 @@ package ru.itmo.lessons.lesson24;
 
 import java.util.HashSet;
 
-class Manager extends Employee {
+public class Manager extends Employee {
     public final String title = "Управляющий";
     private double bonus;
     private HashSet<Employee> people;
