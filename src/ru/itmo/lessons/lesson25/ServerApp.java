@@ -1,34 +1,81 @@
 package ru.itmo.lessons.lesson25;
 
+import ru.itmo.lessons.lesson25.common.Message;
+import ru.itmo.lessons.lesson25.common.ReadWrite;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
 public class ServerApp {
+    private int port;
 
-    public static void main(String[] args) {
-        ServerSocket serverSocket = null;
-        OutputStream output = null;
-        InputStream input = null;
+    // При создании сервера в конструктор передается номер порта (int),
+    // по которому клиенты смогут подключаться к серверу.
+    public ServerApp(int port) {
+        this.port = port;
+    }
 
-        try {
-            serverSocket = new ServerSocket(2222);
+    public void run(){
+        try (ServerSocket serverSocket = new ServerSocket(port)){
             System.out.println("Сервер запущен");
 
-            Socket socket = serverSocket.accept();
-            System.out.println("Новое подключение");
+            while (true) {
+                Socket socket = serverSocket.accept(); // 3.1. устанавливает соединение с клиентом
+                try (ReadWrite readWrite = new ReadWrite(socket)){
+                    Message fromClient = readWrite.readMessage(); // 3.2. получает от клиента сообщение
+                    System.out.println(fromClient.getText());
+                    Message answer = new Message("server"); // 3.3. формирует ответное сообщение (с произвольным текстом)
+                    readWrite.writeMessage(answer); // 3.4. отправляет сообщение клиенту
+                } catch (ClassNotFoundException e) {
+                    System.out.println("Ошибка десериализации. Класс Message не найден");
+                } catch (IOException e){
+                    System.out.println("Ошибка во время создания объекта");
+                    System.out.println("или Ошибка во время чтения. Обрыв соединения");
+                    System.out.println("или Ошибка во время записи. Обрыв соединения");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка создания serverSocket, например, указанный порт занят");
+            e.printStackTrace();
+        }
+    }
 
-            System.out.println(socket.getLocalSocketAddress());
-            System.out.println(socket.getRemoteSocketAddress());
 
-            output = socket.getOutputStream(); // отправка данных
-            input = socket.getInputStream(); // получение данных
 
-            // ObjectInputStream objectInput = new ObjectInputStream(input); // десериализация
-            // ObjectOutputStream objectOutput = new ObjectOutputStream(output); // сериализация
 
-            System.out.println(input.read());
-            output.write(2);
+    public static void main(String[] args) {
+        new ServerApp(2222).run();
+        /*
+        ServerSocket serverSocket = null; // позволит установить соединение
+        // с клиентскими программами
+        OutputStream output = null; // позволит отправлять данные
+        InputStream input = null; // позволит получать данные
+
+
+        try {
+            serverSocket = new ServerSocket(2222); // привязка серверной программы к указанному порту.
+            // ServerSocket слушает указанный порт...
+            System.out.println("Сервер запущен");
+
+            while (true) {
+                Socket socket = serverSocket.accept(); // ...и устанавливает соединение при появлении клиента
+                System.out.println("Новое подключение");
+
+                System.out.println(socket.getLocalSocketAddress());
+                System.out.println(socket.getRemoteSocketAddress());
+
+                output = socket.getOutputStream(); // для отправки данных по socket соединению
+                input = socket.getInputStream(); // для получения данных по socket соединению
+
+                // ObjectInputStream objectInput = new ObjectInputStream(input); // десериализация
+                // ObjectOutputStream objectOutput = new ObjectOutputStream(output); // сериализация
+
+                // ожидание, когда в inputStream появятся данные
+                System.out.println(input.read()); // чтение данных из inputStream
+                output.write(2); // отправка данных в outputStream
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,5 +88,6 @@ public class ServerApp {
                 e.printStackTrace();
             }
         }
+        */
     }
 }

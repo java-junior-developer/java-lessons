@@ -7,7 +7,21 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
 
+// 2.1. запрашивает текст сообщения (запрос) у пользователя
+// 2.2. устанавливает соединение с сервером
+// 2.3. создает экземпляр сообщения
+// 2.4. отправляет сообщение на сервер
+// 2.5. получает ответ
+// 2.6. выводит полученный ответ в консоль
+// 2.7. закрывает соединение с сервером
+// И так до тех пор, пока пользователь не введет '/exit'
+
 public class ClientApp {
+
+    // При создании клиента в конструктор передается экземпляр InetSocketAddress,
+    // который хранит IP сервера и порт.
+
+
 
     public static void main(String[] args) {
         String ip = "127.0.0.1";
@@ -20,7 +34,7 @@ public class ClientApp {
         OutputStream output = null;
         InputStream input = null;
         try {
-            socket.bind(local);
+            // socket.bind(local);
             System.out.println(socket.isBound());
 
             socket.connect(remote /*, 10000 */); // соединение с удаленным сервером
