@@ -26,7 +26,9 @@ public class ServerApp {
                 try (ReadWrite readWrite = new ReadWrite(socket)){
                     read(readWrite);
                     write(readWrite);
-                } catch (IOException e){
+                } /*catch (ClassCastException e) {
+                    System.out.println("Класс Message не найден");
+                }*/ catch (IOException e){
                     System.out.println("Ошибка во время создания объекта");
                 }
             }
@@ -50,6 +52,8 @@ public class ServerApp {
         Message fromClient = null; // 3.2. получает от клиента сообщение
         try {
             fromClient = readWrite.readMessage();
+            String requestText = fromClient.getText();
+            // обработка известных серверу запросов
         } catch (IOException e) {
             System.out.println("Ошибка во время чтения");
         }
