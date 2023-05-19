@@ -59,7 +59,7 @@ public class NIOServerApp {
             // регистрация канала в селекторе:
             // селектор будет сохранять в коллекции информацию при каждом новом подключении,
             // информация сохранится как экземпляр SelectionKey(OP_ACCEPT)
-            serverChannel.register(selector, SelectionKey.OP_ACCEPT);
+            serverChannel.register(selector, SelectionKey.OP_ACCEPT); // SelectionKey.WRITE | SelectionKey.READ
         }
 
         private void chooseEventReaction() throws IOException {
@@ -68,7 +68,9 @@ public class NIOServerApp {
             selector.select();
 
             // получение коллекции селектора с информацией о событиях
-            Set<SelectionKey> keys = selector.selectedKeys();
+            Set<SelectionKey> keys = selector.selectedKeys(); // можно удалять объекты
+            // Set<SelectionKey> keys = selector.keys(); // нельзя удалять объекты
+
 
             // перебор итератором позволит удалить информацию о событии из коллекции
             // после того, как она будет обработана
@@ -124,6 +126,8 @@ public class NIOServerApp {
             String fromChannel = new String(byteBuffer.array(), 0, byteBuffer.position(), StandardCharsets.UTF_8);
             System.out.println(fromChannel);
 
+            // byteBuffer.put()
+
             // буфер должен быть готов к записи (данные из буфера будут записаны в канал)
             // limit (сколько данных можно забрать из буфера) должен быть равен position,
             // чтобы забрать только валидные, а не пустые байты
@@ -165,3 +169,4 @@ public class NIOServerApp {
         new NIOServerApp(new InetSocketAddress(2222)).start();
     }
 }
+
