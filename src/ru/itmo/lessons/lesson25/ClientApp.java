@@ -65,6 +65,11 @@ public class ClientApp {
         String ip = "127.0.0.1";
         int port = 2222;
         InetSocketAddress remote = new InetSocketAddress(ip, port);
+
+        ClientApp clientApp = new ClientApp(remote);
+        clientApp.run();
+
+        /*
         InetSocketAddress local = new InetSocketAddress(ip, 1111);
 
         Socket socket = new Socket();
@@ -76,7 +81,7 @@ public class ClientApp {
             // socket.bind(local);
             System.out.println(socket.isBound());
 
-            socket.connect(remote /*, 10000 */); // соединение с удаленным сервером
+            socket.connect(remote, 10000); // соединение с удаленным сервером
             System.out.println(socket.isConnected());
 
             System.out.println(socket.getReceiveBufferSize());
@@ -103,6 +108,7 @@ public class ClientApp {
                 e.printStackTrace();
             }
         }
+        */
 
     }
 }
