@@ -17,8 +17,13 @@ public class ReadWrite implements AutoCloseable{
         this.socket = socket;
     }
 
-    public Message readMessage() throws IOException, ClassNotFoundException {
-        return (Message) input.readObject();
+    public Message readMessage() throws IOException {
+        try {
+            return (Message) input.readObject();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Класс Message не найден");
+        }
+        return null;
     }
     public void writeMessage(Message message) throws IOException {
         message.setSent(LocalDateTime.now());

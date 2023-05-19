@@ -24,22 +24,36 @@ public class ServerApp {
             while (true) {
                 Socket socket = serverSocket.accept(); // 3.1. устанавливает соединение с клиентом
                 try (ReadWrite readWrite = new ReadWrite(socket)){
-                    Message fromClient = readWrite.readMessage(); // 3.2. получает от клиента сообщение
-                    System.out.println(fromClient.getText());
-                    Message answer = new Message("server"); // 3.3. формирует ответное сообщение (с произвольным текстом)
-                    readWrite.writeMessage(answer); // 3.4. отправляет сообщение клиенту
-                } catch (ClassNotFoundException e) {
-                    System.out.println("Ошибка десериализации. Класс Message не найден");
+                    read(readWrite);
+                    write(readWrite);
                 } catch (IOException e){
                     System.out.println("Ошибка во время создания объекта");
-                    System.out.println("или Ошибка во время чтения. Обрыв соединения");
-                    System.out.println("или Ошибка во время записи. Обрыв соединения");
                 }
             }
         } catch (IOException e) {
             System.out.println("Ошибка создания serverSocket, например, указанный порт занят");
             e.printStackTrace();
         }
+    }
+
+    private void write(ReadWrite readWrite) {
+        Message answer = new Message("server"); // 3.3. формирует ответное сообщение (с произвольным текстом)
+        try {
+            readWrite.writeMessage(answer); // 3.4. отправляет сообщение клиенту
+        } catch (IOException e) {
+            System.out.println("Ошибка отправки сообщения");
+        }
+    }
+
+
+    private void read(ReadWrite readWrite){
+        Message fromClient = null; // 3.2. получает от клиента сообщение
+        try {
+            fromClient = readWrite.readMessage();
+        } catch (IOException e) {
+            System.out.println("Ошибка во время чтения");
+        }
+        System.out.println(fromClient.getText());
     }
 
 
