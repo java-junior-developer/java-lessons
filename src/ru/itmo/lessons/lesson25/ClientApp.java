@@ -1,25 +1,63 @@
 package ru.itmo.lessons.lesson25;
 
+import ru.itmo.lessons.lesson25.common.Message;
+import ru.itmo.lessons.lesson25.common.ReadWrite;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Scanner;
 
-// 2.1. запрашивает текст сообщения (запрос) у пользователя
-// 2.2. устанавливает соединение с сервером
-// 2.3. создает экземпляр сообщения
-// 2.4. отправляет сообщение на сервер
-// 2.5. получает ответ
-// 2.6. выводит полученный ответ в консоль
+
+
+
 // 2.7. закрывает соединение с сервером
-// И так до тех пор, пока пользователь не введет '/exit'
+
 
 public class ClientApp {
+    private InetSocketAddress remote;
 
     // При создании клиента в конструктор передается экземпляр InetSocketAddress,
     // который хранит IP сервера и порт.
+    public ClientApp(InetSocketAddress remote) {
+        this.remote = remote;
+    }
+
+    public void run(){
+        // Thread.sleep(млс);
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            // 2.1. запрашивает текст сообщения (запрос) у пользователя
+            System.out.println("Введите текст или /exit для выхода");
+            String text = scanner.nextLine();
+            // И так до тех пор, пока пользователь не введет '/exit'
+            if ("/exit".equals(text)) return;
+
+            // 2.2. устанавливает соединение с сервером
+            try (Socket socket = new Socket(remote.getHostString(), remote.getPort());
+                 ReadWrite readWrite = new ReadWrite(socket)){
+                // 2.3. создает экземпляр сообщения
+                Message message = new Message(text);
+                // 2.4. отправляет сообщение на сервер
+                readWrite.writeMessage(message);
+                // 2.5. получает ответ
+                Message fromServer = readWrite.readMessage();
+                // 2.6. выводит полученный ответ в консоль
+                System.out.println(fromServer.getText());
+            } catch (UnknownHostException e) {
+                System.out.println("Ошибка в IP сервера");
+            } catch (IOException e) {
+                System.out.println("Сервер не отвечает");
+            }
+        }
+    }
+
 
 
 
@@ -31,6 +69,7 @@ public class ClientApp {
 
         Socket socket = new Socket();
         // Socket socket = new Socket(ip, port); // соединение с удаленным сервером
+        // Socket socket = new Socket(remote.getHostString(), remote.getPort());
         OutputStream output = null;
         InputStream input = null;
         try {
