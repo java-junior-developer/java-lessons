@@ -19,7 +19,7 @@ public class ServerApp {
 
     public void run(){
         try (ServerSocket serverSocket = new ServerSocket(port)){
-            System.out.println("Сервер запущен");
+            System.out.println("Сервер запущен...");
 
             while (true) {
                 Socket socket = serverSocket.accept(); // 3.1. устанавливает соединение с клиентом

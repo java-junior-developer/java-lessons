@@ -17,7 +17,7 @@ public class ReadWrite implements AutoCloseable{
         this.socket = socket;
     }
 
-    public Message readMessage() throws IOException/*, ClassNotFoundException*/ {
+    public Message readMessage() throws IOException /*, ClassNotFoundException*/ {
         try {
             return (Message) input.readObject();
         } catch (ClassNotFoundException e) {
