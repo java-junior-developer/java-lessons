@@ -1,7 +1,12 @@
 package ru.itmo.lessons.lesson27;
 
+
 public class Base {
     public static void main(String[] args) throws InterruptedException {
+        // main - имя первого запущенного потока
+
+        // количество доступных ядер процессора
+        int numOfCores = Runtime.getRuntime().availableProcessors();
 
         // создание экземпляров и запуск потоков
         ThreadChild thread01 = new ThreadChild(); // поток создан
