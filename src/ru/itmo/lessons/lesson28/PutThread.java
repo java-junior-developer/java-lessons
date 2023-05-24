@@ -1,5 +1,7 @@
 package ru.itmo.lessons.lesson28;
 
+import java.util.Scanner;
+
 public class PutThread extends Thread /* implements Runnable */{
     private int sum;
     private BankAccount account;
@@ -11,6 +13,18 @@ public class PutThread extends Thread /* implements Runnable */{
 
     @Override
     public void run() {
-        account.putMoney(sum);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите сумму");
+        int s = scanner.nextInt();
+        synchronized (account){
+            /*Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите сумму");
+            int s = scanner.nextInt();*/
+            account.putMoney(s);
+        }
+        // инструкции, не связанные со свойствами account
+        synchronized (account) {
+            account.putAddMoney(s * 2);
+        }
     }
 }
