@@ -8,11 +8,11 @@ public class BankAccount {
         return money;
     }
 
-    public void putMoney(int value){
+    synchronized public void putMoney(int value){
         if (value > 0) money += value;
     }
 
-    public void putAddMoney(int value){
+    synchronized public void putAddMoney(int value){
         if (value > 0) addMoney += value;
     }
 }

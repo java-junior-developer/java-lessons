@@ -16,15 +16,7 @@ public class PutThread extends Thread /* implements Runnable */{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите сумму");
         int s = scanner.nextInt();
-        synchronized (account){
-            /*Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите сумму");
-            int s = scanner.nextInt();*/
-            account.putMoney(s);
-        }
-        // инструкции, не связанные со свойствами account
-        synchronized (account) {
-            account.putAddMoney(s * 2);
-        }
+        account.putMoney(s);
+        account.putAddMoney(s * 2);
     }
 }
