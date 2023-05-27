@@ -22,7 +22,8 @@ public class ReadTask implements Runnable{
             // InterruptedException - исключение времени компиляции
 
             try {
-                Message message = messages.take();
+                Message message = messages.take(); // только метод take приостанавливает
+                // работу потока до тех пор, пока в очереди не появятся элементы
                 System.out.println("read " + message);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());

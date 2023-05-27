@@ -25,7 +25,7 @@ public class WriteTask implements Runnable{
                 // объект добавляется в конец очереди,
                 // если очередь переполнена, поток блокируется
                 // до появления в очереди свободного места
-                messages.put(message);
+                messages.put(message); // только метод put блокирует поток, если очередь переполнена
                 System.out.println("write " + message);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
