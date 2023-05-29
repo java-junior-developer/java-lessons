@@ -10,10 +10,11 @@ public class RequestThread implements Callable<DataFromServer> /* Runnable */ {
     private final String[] tokens;
     private final Semaphore semaphore;
 
-    public RequestThread(String[] tokens, Semaphore semaphore) {
+    public RequestThread(String[] tokens, Semaphore semaphore, ReentrantLock reentrantLock) {
         this.tokens = tokens;
         this.semaphore = semaphore;
-        this.reentrantLock = new ReentrantLock(true);
+        this.reentrantLock = reentrantLock;
+        // this.reentrantLock = new ReentrantLock(true);
     }
 
     @Override
@@ -22,8 +23,10 @@ public class RequestThread implements Callable<DataFromServer> /* Runnable */ {
         System.out.println("Поток " + Thread.currentThread().getName() +
                 " готов отправить запрос. Нужен токен.");
 
+
+
         try {
-            // запрос разрешения на токен
+            // запрос разрешение
             semaphore.acquire();
 
             String token = null;
@@ -40,10 +43,9 @@ public class RequestThread implements Callable<DataFromServer> /* Runnable */ {
             if (isLocked) System.out.println("Удалось получить блокировку");
             else System.out.println("Ресурс не был освобожден");*/
 
-            reentrantLock.lock();
-            //synchronized (tokens) {
+            reentrantLock.lock(); // 1
+            // synchronized (tokens) {
             try {
-
 
                 for (int i = 0; i < tokens.length; i++)
                     // если есть свободные токены
@@ -58,7 +60,7 @@ public class RequestThread implements Callable<DataFromServer> /* Runnable */ {
             } finally {
                 reentrantLock.unlock();
             }
-            //}
+            //} [null, null]
             // запрос на сервер, получение данных и нового токена
             Thread.sleep((int) (Math.random() * 10 + 1) * 1000);
             System.out.println("Поток " + Thread.currentThread().getName() + " использует токен " + token);
@@ -70,7 +72,7 @@ public class RequestThread implements Callable<DataFromServer> /* Runnable */ {
                 tokens[tokenIndex] = token;
             }
 
-            // освобождение ресурса
+            // освобождение разрешения
             semaphore.release();
             System.out.println("Поток " + Thread.currentThread().getName() + " завершил работу.");
 

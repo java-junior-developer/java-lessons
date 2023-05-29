@@ -2,9 +2,11 @@ package ru.itmo.lessons.lesson30;
 
 import java.util.ArrayList;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Lesson30 {
     public static void main(String[] args) throws InterruptedException {
+        /*
         // сами по себе не являются потоками
         Callable<String> callableTask = () -> "string";
         Runnable runnableTask = () -> System.out.println("string");
@@ -36,7 +38,8 @@ public class Lesson30 {
         // результат работы метода call будет сохранен во Future контейнере
         Future<String> containerForTaskResult = pool.submit(callableTask);
 
-        // вызывающий (main в данном случае) ждет, пока данные поступят в контейнер
+        // вызывающий (main в данном случае) ждет,
+        // пока данные поступят в контейнер
         try {
             // String taskResult02 = containerForTaskResult.get();
             String taskResult02 = containerForTaskResult.get(10000, TimeUnit.MILLISECONDS);
@@ -47,13 +50,33 @@ public class Lesson30 {
             System.out.println("Данные не были получены за 10000 млс. " +
                     "main больше не будет ждать");
         }
+        // pool:
+        // потоки [t1]
+        // задачи [runnableTask, callableTask]
+        // после передачи задачи в очередь пула: callableTask -> Future[null]
 
+        // containerForTaskResult.get(); - main ждет, пока в контейнере появится строка
+
+        // после завершения задачи: callableTask -> Future["строка"]
+        */
 
         String[] tokens = {"fr3vgrg", "3wvjiwg"};
 
         Semaphore tokenSemaphore = new Semaphore(tokens.length, true);
 
-        RequestThread requestThread = new RequestThread(tokens, tokenSemaphore);
+        // Одна блокировка (ReentrantLock) на несколько потоков.
+        // Если поток захватывает блокировку методами lock или tryLock,
+        // другие потоки приостанавливают работу на моменте вызова lock или tryLock
+        // и не могут выполнять инструкции дальше.
+        // То есть, блокируется не сам ресурс и ожидающие его потоки,
+        // как в synchronized блоке или методе,
+        // а потоки, которые не успели получить блокировку (ReentrantLock)
+        // Когда поток отпускает блокировку (ReentrantLock), методом unlock,
+        // один поток, из ожидающих на моменте вызова lock или tryLock,
+        // получает блокировку (ReentrantLock), остальные продолжают ждать.
+        ReentrantLock reentrantLock = new ReentrantLock(true);
+
+        RequestThread requestThread = new RequestThread(tokens, tokenSemaphore, reentrantLock);
 
         /*for (int i = 0; i <= 10; i++) {
             new Thread(new RequestThread(tokens, tokenSemaphore)).start();
