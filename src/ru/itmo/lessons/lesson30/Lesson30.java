@@ -5,6 +5,49 @@ import java.util.concurrent.*;
 
 public class Lesson30 {
     public static void main(String[] args) throws InterruptedException {
+        // сами по себе не являются потоками
+        Callable<String> callableTask = () -> "string";
+        Runnable runnableTask = () -> System.out.println("string");
+
+        // возвращает результат работы метода
+        // может выбросить исключение времени компиляции
+        String taskResult01 = callableTask.call();
+
+        // не возвращает результат работы метода
+        // не может выбросить исключение времени компиляции
+        runnableTask.run();
+
+        // можно напрямую передать в конструктор Thread,
+        // инструкции из run будут выполняться в отдельном потоке
+        Thread thread01 = new Thread(runnableTask);
+        thread01.start();
+
+        // нельзя передать в конструктор Thread
+        Thread thread02 = new Thread(callableTask);
+        thread02.start();
+
+        ExecutorService pool = Executors.newSingleThreadExecutor();
+        // можно передать пулу потоков
+        // инструкции из run будут выполняться в отдельном потоке
+        pool.execute(runnableTask);
+
+        // можно передать пулу потоков
+        // инструкции из call будут выполняться в отдельном потоке
+        // результат работы метода call будет сохранен во Future контейнере
+        Future<String> containerForTaskResult = pool.submit(callableTask);
+
+        // вызывающий (main в данном случае) ждет, пока данные поступят в контейнер
+        try {
+            // String taskResult02 = containerForTaskResult.get();
+            String taskResult02 = containerForTaskResult.get(10000, TimeUnit.MILLISECONDS);
+        } catch (ExecutionException e) {
+            System.out.println("Ошибка возникла во время выполнения задачи. " +
+                    "Данные не будут получены");
+        } catch (TimeoutException e) {
+            System.out.println("Данные не были получены за 10000 млс. " +
+                    "main больше не будет ждать");
+        }
+
 
         String[] tokens = {"fr3vgrg", "3wvjiwg"};
 
@@ -32,7 +75,8 @@ public class Lesson30 {
             try {
                 System.out.println("Ожидание получения данных");
                 DataFromServer dataFromServer = dataContainer.get();
-                // DataFromServer dataFromServer = dataContainer.get((long) (Math.random() * 2000), TimeUnit.MILLISECONDS));
+                // DataFromServer dataFromServer =
+                // dataContainer.get(200_000L, TimeUnit.MILLISECONDS));
                 System.out.println("Данные получены: " + dataFromServer.getName());
             } catch (InterruptedException | ExecutionException /*| TimeoutException*/ e) {
                 e.printStackTrace();
