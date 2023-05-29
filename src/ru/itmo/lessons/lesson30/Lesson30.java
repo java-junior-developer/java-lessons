@@ -3,7 +3,7 @@ package ru.itmo.lessons.lesson30;
 import java.util.ArrayList;
 import java.util.concurrent.*;
 
-public class MondayLesson {
+public class Lesson30 {
     public static void main(String[] args) throws InterruptedException {
 
         String[] tokens = {"fr3vgrg", "3wvjiwg"};
