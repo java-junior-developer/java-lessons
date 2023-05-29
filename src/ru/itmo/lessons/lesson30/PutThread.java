@@ -11,6 +11,9 @@ public class PutThread extends Thread {
 
     @Override
     public void run() {
-        account.putMoney(sum);
+        // вместо synchronized (account) {
+        // используется атомарный класс
+            account.putMoney(sum);
+        // }
     }
 }
