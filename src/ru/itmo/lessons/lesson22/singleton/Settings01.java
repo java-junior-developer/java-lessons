@@ -72,7 +72,7 @@ public class Settings01 implements Serializable {
     }
 
 
-    protected Object readResolve(){
+    protected Object readResolve(){ // когда ObjectInputStream читает из потока, перед десериализацией
         return SETTINGS_01_INSTANCE;
     }
 }
